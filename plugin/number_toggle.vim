@@ -1,3 +1,11 @@
+" Prevent multi loads and disable in compatible mode
+" check if vim version is at least 7.3 
+" (relativenumber is not supported below)
+if exists('g:loaded_numbertoggle') || &cp || v:version < 703
+  finish
+endif
+let g:loaded_numbertoggle = 1
+
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
 	if(&relativenumber == 1)
