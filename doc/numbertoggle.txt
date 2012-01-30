@@ -1,0 +1,26 @@
+*numbertoggle.txt*	(auto-)toggeling for Vim line numbers
+
+Author:  Jeff Kreeftmeijer <http://jeffkreeftmeijer.com>
+
+INTRODUCTION                                    *numbertoggle*
+
+While Vim's relativenumber option is great, you probably don't want to use it
+all the time. numbertoggle allows you to quickly toggle between relative and
+absolute line numbers and cleverly switches when when focus is lost or gained
+or when switching between normal and insert mode.
+
+TRIGGER                                         *numbertoggle-trigger*
+
+NumberToggle sets up <C-n> to toggle from absolute to relative line numbers by
+default, but you can set up another trigger if you prefer. If you want to
+toggle using <F2>, for example, put this into your ~/.vimrc file:
+
+  let g:NumberToggleTrigger="<F2>"
+
+ABOUT                                           *numbertoggle-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/jeffkreeftmeijer/vim-numbertoggle
+
+ vim:tw=78:et:ft=help:norl:
