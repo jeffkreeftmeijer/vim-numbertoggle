@@ -1,3 +1,9 @@
+" Prevent multi loads and disable in compatible mode
+if exists('g:loaded_numbertoggle') || &cp
+  finish
+endif
+let g:loaded_numbertoggle = 1
+
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
 	if(&relativenumber == 1)
