@@ -11,3 +11,6 @@ If you don't have a preferred installation method, I recommend installing [patho
 
 Once help tags have been generated, you can view the manual with
 `:help numbertoggle`.
+
+## License
+Copyright (c) Jeff Kreeftmeijer. Distributed under the same terms as Vim itself. See :help license.
