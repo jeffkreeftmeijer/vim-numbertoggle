@@ -26,7 +26,7 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 if exists('g:NumberToggleTrigger')
-  exec "nnoremap " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
+  exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
 else
-  nnoremap <C-n> :call NumberToggle()<cr>
+  nnoremap <silent> <C-n> :call NumberToggle()<cr>
 endif
