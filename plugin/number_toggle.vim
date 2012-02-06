@@ -48,6 +48,12 @@ function! InsertEnter()
 endfunc
 
 
+" Automatically set relative line numbers when opening a new document
+autocmd BufNewFile * :call UpdateMode()
+autocmd BufReadPost * :call UpdateMode()
+autocmd FilterReadPost * :call UpdateMode()
+autocmd FileReadPost * :call UpdateMode()
+
 " Automatically switch to absolute numbers when focus is lost and switch back
 " when the focus is regained.
 autocmd FocusLost * :call FocusLost()
