@@ -2,7 +2,7 @@
 " check if vim version is at least 7.3 
 " (relativenumber is not supported below)
 if exists('g:loaded_numbertoggle') || &cp || v:version < 703
-  finish
+	finish
 endif
 let g:loaded_numbertoggle = 1
 
@@ -26,7 +26,7 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 if exists('g:NumberToggleTrigger')
-  exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
+	exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
 else
-  nnoremap <silent> <C-n> :call NumberToggle()<cr>
+	nnoremap <silent> <C-n> :call NumberToggle()<cr>
 endif
