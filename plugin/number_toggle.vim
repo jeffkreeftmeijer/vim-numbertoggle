@@ -5,6 +5,8 @@ if exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
 endif
 let g:loaded_numbertoggle = 1
+let g:insertmode = 0
+let g:focus = 1
 
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
@@ -15,15 +17,46 @@ function! NumberToggle()
 	endif
 endfunc
 
+function! UpdateMode()
+	if(g:focus == 0)
+		set number
+	elseif(g:insertmode == 0)
+		set relativenumber
+	else
+		set number
+	end
+endfunc
+
+function! FocusGained()
+	let g:focus = 1
+	call UpdateMode()
+endfunc
+
+function! FocusLost()
+	let g:focus = 0
+	call UpdateMode()
+endfunc
+
+function! InsertLeave()
+	let g:insertmode = 0
+	call UpdateMode()
+endfunc
+
+function! InsertEnter()
+	let g:insertmode = 1
+	call UpdateMode()
+endfunc
+
+
 " Automatically switch to absolute numbers when focus is lost and switch back
 " when the focus is regained.
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
+autocmd FocusLost * :call FocusLost()
+autocmd FocusGained * :call FocusGained()
 
 " Switch to absolute line numbers when entering insert mode and switch back to
 " relative line numbers when switching back to normal mode.
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+autocmd InsertEnter * :call InsertEnter()
+autocmd InsertLeave * :call InsertLeave()
 
 if exists('g:NumberToggleTrigger')
 	exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
