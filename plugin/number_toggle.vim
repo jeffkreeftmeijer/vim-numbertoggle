@@ -73,6 +73,11 @@ autocmd FocusGained * :call FocusGained()
 autocmd WinLeave * :call FocusLost()
 autocmd WinEnter * :call FocusGained()
 
+" Switch to absolute line numbers when the window loses focus and switch back
+" to relative line numbers when the focus is regained.
+autocmd WinLeave * :call FocusLost()
+autocmd WinEnter * :call FocusGained()
+
 " Switch to absolute line numbers when entering insert mode and switch back to
 " relative line numbers when switching back to normal mode.
 autocmd InsertEnter * :call InsertEnter()
