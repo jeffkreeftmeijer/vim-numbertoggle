@@ -54,13 +54,15 @@ autocmd BufReadPost * :call UpdateMode()
 autocmd FilterReadPost * :call UpdateMode()
 autocmd FileReadPost * :call UpdateMode()
 
-" Automatically switch to absolute numbers when focus is lost and switch back
-" when the focus is regained.
+" Automatically switch to absolute numbers when input focus is lost and switch
+" back to relative line numbers when the input focus is regained. Only for GUI
+" versions, and some console versions where this can be detected.
 autocmd FocusLost * :call FocusLost()
 autocmd FocusGained * :call FocusGained()
 
-" Switch to absolute line numbers when the window loses focus and switch back
-" to relative line numbers when the focus is regained.
+" Automatically switch to absolute line numbers when window or buffer focus is
+" lost, and switch back to relative line numbers when the window or buffer
+" focus is regained.
 autocmd WinLeave * :call FocusLost()
 autocmd WinEnter * :call FocusGained()
 
