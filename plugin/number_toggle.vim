@@ -1,7 +1,7 @@
 " Prevent multi loads and disable in compatible mode
 " check if vim version is at least 7.3 
 " (relativenumber is not supported below)
-if exists('g:loaded_numbertoggle') || &cp || v:version < 703
+if has('autocmd') || exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
 endif
 
