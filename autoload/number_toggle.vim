@@ -2,8 +2,8 @@ let g:number_toggle#numbertoggle={}
 
 function! g:number_toggle#numbertoggle.source() "{{{1
 	let g:numbertoggle={}
-	let s:insertmode = 0
-	let s:focus = 1
+	let s:insertmode=0
+	let s:focus=1
 
 	if exists('g:default_off')
 		unlet g:default_off
@@ -22,7 +22,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 
 	function g:numbertoggle.updatemode()
-		if(g:focus == 0)
+		if(s:focus == 0)
 			set number
 		elseif(s:insertmode == 0)
 			set relativenumber
@@ -32,12 +32,12 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 
 	function g:numbertoggle.focusg()
-		let g:focus = 1
+		let s:focus = 1
 		call g:numbertoggle.updatemode()
 	endfunc
 
 	function g:numbertoggle.focusl()
-		let g:focus = 0
+		let s:focus = 0
 		call g:numbertoggle.updatemode()
 	endfunc
 
@@ -54,10 +54,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 
 	augroup NumberToggle
 		" Automatically set relative line numbers when opening a new document
-		autocmd BufNewFile * :call g:numbertoggle.updatemode()
-		autocmd BufReadPost * :call g:numbertoggle.updatemode()
-		autocmd FilterReadPost * :call g:numbertoggle.updatemode()
-		autocmd FileReadPost * :call g:numbertoggle.updatemode()
+		autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost * :call g:numbertoggle.updatemode()
 
 		" Automatically switch to absolute numbers when input focus is lost and switch
 		" back to relative line numbers when the input focus is regained. Only for GUI
@@ -78,7 +75,11 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	augroup END
 
 	let s:plugin_lhs=exists('g:NumberToggleTrigger') ? g:NumberToggleTrigger : '<C-n>'
-	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call number_toggle#numbertoggle.source()<CR>'
+	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call g:numbertoggle.toggle()<CR>'
+
+	let s:plugin_lhs=exists('g:NumberToggleOff') ?g:NumberToggleOff : '<C-b>'
+	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call call(g:number_toggle#numbertoggle.unload, [], {})<CR>'
+
 endfunction "}}}1
 
 function! g:number_toggle#numbertoggle.unload() "{{{1
@@ -86,6 +87,10 @@ function! g:number_toggle#numbertoggle.unload() "{{{1
 		autocmd!
 	augroup END
 	augroup! NumberToggle
+
+	set nonumber
+	set norelativenumber
+
 	execute 'nunmap' s:plugin_lhs
 	unlet g:numbertoggle
 	unlet s:insertmode
