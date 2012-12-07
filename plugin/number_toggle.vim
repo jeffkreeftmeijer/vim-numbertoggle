@@ -21,4 +21,10 @@ else "{{{1
 
 	call call(g:number_toggle#numbertoggle.source, [], {})
 
+	if exists('g:NumberToggleOn')
+		exec 'nnoremap <silent> ' . g:NumberToggleOn . ' :call call(g:number_toggle#numbertoggle.source,[],{})<CR>'
+	else
+		nnoremap <silent> <C-m> :call call(g:number_toggle#numbertoggle.source, [], {})<CR>
+	endif
+
 endif
