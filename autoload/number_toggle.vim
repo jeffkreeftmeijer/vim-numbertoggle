@@ -1,7 +1,10 @@
-let g:insertmode = 0
-let g:focus = 1
+let s:insertmode = 0
+let s:focus = 1
+let g:number_toggle#numbertoggle={}
 
-function! number_toggle#g:numbertoggle.source() "{{{1
+function! g:number_toggle#numbertoggle.source() "{{{1
+	let g:number_toggle#numbertoggle={}
+
 	if exists('g:default_off')
 		unlet g:default_off
 	endif
@@ -78,15 +81,14 @@ function! number_toggle#g:numbertoggle.source() "{{{1
 	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call number_toggle#numbertoggle.source()<CR>'
 endfunction "}}}1
 
-function! number_toggle#g:numbertoggle.unload() "{{{1
+function! g:number_toggle#numbertoggle.unload() "{{{1
 	augroup! NumberToggle
 		autocmd!
 	augroup END
 	augroup! NumberToggle
 	execute 'nunmap' s:plugin_lhs
 	unlet g:numbertoggle
-	unlet g:loaded_numbertoggle
-	unlet g:insertmode
-	unlet g:focus
+	unlet s:insertmode
+	unlet s:focus
 	unlet s:plugin_lhs
 endfunction "}}}1
