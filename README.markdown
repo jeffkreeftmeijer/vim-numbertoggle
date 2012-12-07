@@ -81,7 +81,7 @@ Thanks to:
 
 * @markus1189 - For adding a check to make sure current version of Vim is compatible with numbertoggle. And for preventing plugin reloading. And for adding the `<silent>` flat to NumberToggle() calls. Adding .gitignore entry for docs' tags.
 * @reedriley - For fixing inconsistent whitespace, fixing bug when regaining focus while in insert mode and for adding autocmds for setting appropiate mode when editing a file.
-* @Greduan - For fixing issues #5 and #6. For adding ability to turn on and off numbertoggle, at will. For making it ore efficient.
+* @Greduan - For fixing issues #5 and #6. For adding ability to turn on and off numbertoggle, at will. For making it more efficient. For improving documentation and REAMDE file.
 
 [1]: http://www.vim.org/scripts/script.php?script_id=2332
 [2]: https://github.com/gmarik/vundle
