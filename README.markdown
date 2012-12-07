@@ -12,13 +12,13 @@ http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-mov
 
 numbertoggle provides the following functionality:
 
-    * Switches to relative line numbers when in normal mode.
-    * Switches to permanent line numbers when in insert mode.
-    * Switches to relative line numbers when the buffer or window is in focus.
-    * Switches to permanent line numbers when the buffer or window is not in focus.
-    * Recognizes [Command Line] which can be invoked using 'q:', 'q/' or 'q?' and it automatically uses permanent line numbers exclusively, in order to be able to see which entry in the history it is.
-    * Allows you to turn it off or on at your command (literally).
-    * Allows you to disable it by default until you need it, and then you can disable it again if you want.
+* Switches to relative line numbers when in normal mode.
+* Switches to permanent line numbers when in insert mode.
+* Switches to relative line numbers when the buffer or window is in focus.
+* Switches to permanent line numbers when the buffer or window is not in focus.
+* Recognizes [Command Line] which can be invoked using 'q:', 'q/' or 'q?' and it automatically uses permanent line numbers exclusively, in order to be able to see which entry in the history it is.
+* Allows you to turn it off or on at your command (literally).
+* Allows you to disable it by default until you need it, and then you can disable it again if you want.
 
 # Installation
 
@@ -79,9 +79,9 @@ Copyright 2012 Jeff Kreeftmeijer. Distributed under the same terms as Vim itself
 
 Thanks to:
 
- * {markus1189} - For adding a check to make sure current version of Vim is compatible with numbertoggle. And for preventing plugin reloading. And for adding the `<silent>` flat to NumberToggle() calls. Adding .gitignore entry for docs' tags.
- * {reedriley} - For fixing inconsistent whitespace, fixing bug when regaining focus while in insert mode and for adding autocmds for setting appropiate mode when editing a file.
- * {Greduan} - For fixing issues #5 and #6. For adding ability to turn on and off numbertoggle, at will. For making it ore efficient.
+* {markus1189} - For adding a check to make sure current version of Vim is compatible with numbertoggle. And for preventing plugin reloading. And for adding the `<silent>` flat to NumberToggle() calls. Adding .gitignore entry for docs' tags.
+* {reedriley} - For fixing inconsistent whitespace, fixing bug when regaining focus while in insert mode and for adding autocmds for setting appropiate mode when editing a file.
+* {Greduan} - For fixing issues #5 and #6. For adding ability to turn on and off numbertoggle, at will. For making it ore efficient.
 
 [1]: http://www.vim.org/scripts/script.php?script_id=2332
 [2]: https://github.com/gmarik/vundle
