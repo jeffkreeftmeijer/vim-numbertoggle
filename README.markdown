@@ -14,14 +14,6 @@ Once help tags have been generated, you can view the manual with
 
 ## Settings
 
-### Toggle trigger
-
-By default, the key to toggle between line numbers (i.e. change from relative to permanent line numbers) is `Ctrl+n`. If you want to change this, you can put the following in your `.vimrc` file:<br />
-`let g:NumberToggleTrigger=key-combo`
-
-You would of course replace `key-combo` with whatever keys you want to press to toggle, for example:<br />
-`let g:NumberToggleTrigger=<leader>tl`
-
 ### Disabling numbertoggle by default
 
 By default, numbertoggle is always on. If you want to change this put the following in your `.vimrc` file:<br />
@@ -33,7 +25,21 @@ To call it back on, by default you can use `Ctrl+m` to enable it again, and it w
 `let g:NumberToggleOn=key-combo`
 
 You would of course replace `key-combo` with whatever keys you want to press to turn it back on, for example:<br />
-`let g:NumberToggleTrigger=<leader>to`
+`let g:NumberToggleTrigger=<leader>tlo`
+
+### Turning numbertoggle on/off at will
+
+By default numbertoggle provides the following keymappings:<br />
+`Ctrl+b` which turns numbertoggle completely off, and also line numbers.<br />
+`Ctrl+n` which toggles between permanent and relative line numbers, in whatever mode you are.<br />
+`Ctrl+m` which turns on numbertoggle, if it is off by default or if it was turned off with `Ctrl+b`.
+
+You can configure all of these mappings with the following variables:<br />
+`g:NumberToggleOff`<br />
+`g:NumberToggleTrigger`<br />
+`g:NumberToggleOn`
+
+They control the respective mappings in their respective order.
 
 ## License
 Copyright (c) Jeff Kreeftmeijer. Distributed under the same terms as Vim itself. See :help license.

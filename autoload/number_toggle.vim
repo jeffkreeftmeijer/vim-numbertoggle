@@ -80,7 +80,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	let s:plugin_lhs=exists('g:NumberToggleOff') ?g:NumberToggleOff : '<C-b>'
 	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call call(g:number_toggle#numbertoggle.unload, [], {})<CR>'
 
-endfunction "}}}1
+endfunction
 
 function! g:number_toggle#numbertoggle.unload() "{{{1
 	augroup NumberToggle
