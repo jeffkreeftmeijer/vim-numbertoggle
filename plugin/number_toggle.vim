@@ -6,19 +6,20 @@ if !has('autocmd') || exists('g:loaded_numbertoggle') || &cp || v:version < 703
 endif
 
 let g:loaded_numbertoggle=1
+let g:numbertoggle={}
 
 if exists('g:default_off') "{{{1
 
 	if exists('g:NumberToggleOn')
-		exec 'nnoremap <silent> ' . g:NumberToggleOn . ' :call number_toggle#NumberToggleOn()<cr>'
+		exec 'nnoremap <silent> ' . g:NumberToggleOn . ' :call number_toggle#g:numbertoggle.source<CR>'
 	else
-		nnoremap <silent> <C-m> :call number_toggle#NumberToggleOn()<CR>
+		nnoremap <silent> <C-m> :call number_toggle#g:numbertoggle.source()<CR>
 	endif
 
 	finish
 
 else "{{{1
 
-	call number_toggle#NumberToggleOn()
+	call number_toggle#g:numbertoggle.source()
 
 endif
