@@ -1,9 +1,9 @@
-let s:insertmode = 0
-let s:focus = 1
 let g:number_toggle#numbertoggle={}
 
 function! g:number_toggle#numbertoggle.source() "{{{1
-	let g:number_toggle#numbertoggle={}
+	let g:numbertoggle={}
+	let s:insertmode = 0
+	let s:focus = 1
 
 	if exists('g:default_off')
 		unlet g:default_off
@@ -24,7 +24,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	function g:numbertoggle.updatemode()
 		if(g:focus == 0)
 			set number
-		elseif(g:insertmode == 0)
+		elseif(s:insertmode == 0)
 			set relativenumber
 		else
 			set number
@@ -42,17 +42,17 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 
 	function g:numbertoggle.insertl()
-		let g:insertmode = 0
+		let s:insertmode = 0
 		call g:numbertoggle.updatemode()
 	endfunc
 
 	function g:numbertoggle.inserte()
-		let g:insertmode = 1
+		let s:insertmode = 1
 		call g:numbertoggle.updatemode()
 	endfunc
 	" }}}2
 
-	augroup! NumberToggle
+	augroup NumberToggle
 		" Automatically set relative line numbers when opening a new document
 		autocmd BufNewFile * :call g:numbertoggle.updatemode()
 		autocmd BufReadPost * :call g:numbertoggle.updatemode()
@@ -82,7 +82,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 endfunction "}}}1
 
 function! g:number_toggle#numbertoggle.unload() "{{{1
-	augroup! NumberToggle
+	augroup NumberToggle
 		autocmd!
 	augroup END
 	augroup! NumberToggle
