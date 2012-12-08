@@ -73,9 +73,9 @@ By default numbertoggle provides the following keymappings:<br />
 
 You can configure all of these mappings with the following variables:
 ```viml
-`g:NumberToggleOff`
-`g:NumberToggleTrigger`
-`g:NumberToggleOn`
+g:NumberToggleOff
+g:NumberToggleTrigger
+g:NumberToggleOn
 ```
 
 They control the respective mappings in their respective order.
