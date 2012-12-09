@@ -41,6 +41,11 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 		endif
 	endfunc
 
+	function g:numbertoggle.disable()
+		set nonumber
+		set norelativenumber
+	endfunc
+
 	function g:numbertoggle.focusl()
 		let s:numbertoggle_focus=0
 		call g:numbertoggle.updatemode()
