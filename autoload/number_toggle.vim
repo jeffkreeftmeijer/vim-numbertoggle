@@ -21,23 +21,23 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 
 	function g:numbertoggle.updatemode()
-		if(g:numbertoggle_invert == 0)
+		if exists('g:numbertoggle_invert')
 			if(s:numbertoggle_focus == 0)
-				set number
+				set relativenumber
 			elseif(s:numbertoggle_insertmode == 0)
-				set relativenumber
+				set number
 			else
-				set relativenumber
+				set number
 			endif
 		endif
 
-		if(g:numbertoggle_invert == 1)
+		if !exists('g:numbertoggle_invert')
 			if(s:numbertoggle_focus == 0)
-				set relativenumber
+				set number
 			elseif(s:numbertoggle_insertmode == 0)
-				set number
+				set relativenumber
 			else
-				set number
+				set relativenumber
 			endif
 		endif
 	endfunc
