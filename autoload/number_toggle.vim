@@ -51,6 +51,12 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 		endif
 	endfunction
 
+	" A way to disable the plugin, if it ever comes to that
+	function g:numbertoggle.disable()
+		set nonumber
+		set norelativenumber
+	endfunction
+
 	" .focusl() is used for when you lose focus
 	function g:numbertoggle.focusl()
 		let s:numbertoggle_focus=0
