@@ -136,7 +136,6 @@ function! g:number_toggle#numbertoggle.unload() "{{{1
 	unlet g:numbertoggle
 	unlet s:numbertoggle_insertmode
 	unlet s:numbertoggle_focus
-	unlet g:numbertoggle_invert
 	unlet s:numbertoggle_lhs
 	
 
