@@ -4,7 +4,6 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	let g:numbertoggle={}
 	let s:numbertoggle_insertmode=0
 	let s:numbertoggle_focus=1
-	let g:numbertoggle_invert=0
 
 	if exists('g:default_off')
 		unlet g:default_off
@@ -63,30 +62,29 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 	" }}}2
 
-	augroup NumberToggle
-		" Automatically set relative line numbers when opening a new document.
-		autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost * :call g:numbertoggle.updatemode()
+	" Automatically set relative line numbers when opening a new document.
+	autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost * :call g:numbertoggle.updatemode()
 
-		" Automatically switch to absolute numbers when input focus is lost
-		" and switch back to relative line numbers when the input focus is
-		" regained. Only for GUI versions, and some console versions where
-		" this can be detected. This behavior will be opposite if invert mode
-		" is on.
-		autocmd FocusLost * :call g:numbertoggle.focusl()
-		autocmd FocusGained * :call g:numbertoggle.focusg()
+	" Automatically switch to absolute numbers when input focus is lost
+	" and switch back to relative line numbers when the input focus is
+	" regained. Only for GUI versions, and some console versions where
+	" this can be detected. This behavior will be opposite if invert mode
+	" is on.
+	autocmd FocusLost * :call g:numbertoggle.focusl()
+	autocmd FocusGained * :call g:numbertoggle.focusg()
 
-		" Automatically switch to absolute line numbers when window or buffer
-		" focus is lost, and switch back to relative line numbers when the
-		" window or buffer focus is regained. This behavior will be opposite
-		" if invert mode is on.
-		autocmd WinLeave * :call g:numbertoggle.focusl()
-		autocmd WinEnter * :call g:numbertoggle.focusg()
+	" Automatically switch to absolute line numbers when window or buffer
+	" focus is lost, and switch back to relative line numbers when the
+	" window or buffer focus is regained. This behavior will be opposite
+	" if invert mode is on.
+	autocmd WinLeave * :call g:numbertoggle.focusl()
+	autocmd WinEnter * :call g:numbertoggle.focusg()
 
-		" Switch to absolute line numbers when entering insert mode and switch
-		" back to relative line numbers when switching back to normal mode.
-		" This behaviour will be opposite if invert mode is on.
-		autocmd InsertEnter * :call g:numbertoggle.inserte()
-		autocmd InsertLeave * :call g:numbertoggle.insertl()
+	" Switch to absolute line numbers when entering insert mode and switch
+	" back to relative line numbers when switching back to normal mode.
+	" This behaviour will be opposite if invert mode is on.
+	autocmd InsertEnter * :call g:numbertoggle.inserte()
+	autocmd InsertLeave * :call g:numbertoggle.insertl()
 	augroup END
 
 	let s:numbertoggle_lhs=exists('g:NumberToggleTrigger') ? g:NumberToggleTrigger : '<C-n>'
