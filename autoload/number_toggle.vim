@@ -2,14 +2,13 @@ let g:number_toggle#numbertoggle={}
 
 function! g:number_toggle#numbertoggle.source() "{{{1
 	let g:numbertoggle={}
-	let s:insertmode=0
-	let s:focus=1
+	let s:numbertoggle_insertmode=0
+	let s:numbertoggle_focus=1
+	let g:numbertoggle_invert=0
 
 	if exists('g:default_off')
 		unlet g:default_off
 	endif
-
-	set relativenumber
 
 	" Functions {{{2
 	" NumberToggle toggles between relative and absolute line numbers
@@ -22,32 +21,44 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	endfunc
 
 	function g:numbertoggle.updatemode()
-		if(s:focus == 0)
-			set number
-		elseif(s:insertmode == 0)
-			set relativenumber
-		else
-			set number
-		end
-	endfunc
+		if(g:numbertoggle_invert == 0)
+			if(s:numbertoggle_focus == 0)
+				set number
+			elseif(s:numbertoggle_insertmode == 0)
+				set relativenumber
+			else
+				set relativenumber
+			endif
+		endif
 
-	function g:numbertoggle.focusg()
-		let s:focus = 1
-		call g:numbertoggle.updatemode()
+		if(g:numbertoggle_invert == 1)
+			if(s:numbertoggle_focus == 0)
+				set relativenumber
+			elseif(s:numbertoggle_insertmode == 0)
+				set number
+			else
+				set number
+			endif
+		endif
 	endfunc
 
 	function g:numbertoggle.focusl()
-		let s:focus = 0
+		let s:numbertoggle_focus=0
+		call g:numbertoggle.updatemode()
+	endfunc
+
+	function g:numbertoggle.focusg()
+		let s:numbertoggle_focus=1
 		call g:numbertoggle.updatemode()
 	endfunc
 
 	function g:numbertoggle.insertl()
-		let s:insertmode = 0
+		let s:numbertoggle_insertmode=0
 		call g:numbertoggle.updatemode()
 	endfunc
 
 	function g:numbertoggle.inserte()
-		let s:insertmode = 1
+		let s:numbertoggle_insertmode=1
 		call g:numbertoggle.updatemode()
 	endfunc
 	" }}}2
@@ -74,11 +85,11 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 		autocmd InsertLeave * :call g:numbertoggle.insertl()
 	augroup END
 
-	let s:plugin_lhs=exists('g:NumberToggleTrigger') ? g:NumberToggleTrigger : '<C-n>'
-	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call g:numbertoggle.toggle()<CR>'
+	let s:numbertoggle_lhs=exists('g:NumberToggleTrigger') ? g:NumberToggleTrigger : '<C-n>'
+	exec 'nnoremap <silent> ' . s:numbertoggle_lhs . ' :call g:numbertoggle.toggle()<CR>'
 
-	let s:plugin_lhs=exists('g:NumberToggleOff') ?g:NumberToggleOff : '<C-b>'
-	exec 'nnoremap <silent> ' . s:plugin_lhs . ' :call call(g:number_toggle#numbertoggle.unload, [], {})<CR>'
+	let s:numbertoggle_lhs=exists('g:NumberToggleOff') ?g:NumberToggleOff : '<C-b>'
+	exec 'nnoremap <silent> ' . s:numbertoggle_lhs . ' :call call(g:number_toggle#numbertoggle.unload, [], {})<CR>'
 
 endfunction
 
@@ -91,9 +102,10 @@ function! g:number_toggle#numbertoggle.unload() "{{{1
 	set nonumber
 	set norelativenumber
 
-	execute 'nunmap' s:plugin_lhs
+	execute 'nunmap' s:numbertoggle_lhs
 	unlet g:numbertoggle
-	unlet s:insertmode
-	unlet s:focus
-	unlet s:plugin_lhs
+	unlet s:numbertoggle_insertmode
+	unlet s:numbertoggle_focus
+	unlet g:numbertoggle_invert
+	unlet s:numbertoggle_lhs
 endfunction "}}}1
