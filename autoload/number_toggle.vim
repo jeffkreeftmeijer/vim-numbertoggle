@@ -27,7 +27,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 			elseif(s:numbertoggle_insertmode == 0)
 				set number
 			else
-				set number
+				set relativenumber
 			endif
 		endif
 
@@ -37,7 +37,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 			elseif(s:numbertoggle_insertmode == 0)
 				set relativenumber
 			else
-				set relativenumber
+				set number
 			endif
 		endif
 	endfunc
@@ -64,23 +64,27 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	" }}}2
 
 	augroup NumberToggle
-		" Automatically set relative line numbers when opening a new document
+		" Automatically set relative line numbers when opening a new document.
 		autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost * :call g:numbertoggle.updatemode()
 
-		" Automatically switch to absolute numbers when input focus is lost and switch
-		" back to relative line numbers when the input focus is regained. Only for GUI
-		" versions, and some console versions where this can be detected.
+		" Automatically switch to absolute numbers when input focus is lost
+		" and switch back to relative line numbers when the input focus is
+		" regained. Only for GUI versions, and some console versions where
+		" this can be detected. This behavior will be opposite if invert mode
+		" is on.
 		autocmd FocusLost * :call g:numbertoggle.focusl()
 		autocmd FocusGained * :call g:numbertoggle.focusg()
 
-		" Automatically switch to absolute line numbers when window or buffer focus is
-		" lost, and switch back to relative line numbers when the window or buffer
-		" focus is regained.
+		" Automatically switch to absolute line numbers when window or buffer
+		" focus is lost, and switch back to relative line numbers when the
+		" window or buffer focus is regained. This behavior will be opposite
+		" if invert mode is on.
 		autocmd WinLeave * :call g:numbertoggle.focusl()
 		autocmd WinEnter * :call g:numbertoggle.focusg()
 
-		" Switch to absolute line numbers when entering insert mode and switch back to
-		" relative line numbers when switching back to normal mode.
+		" Switch to absolute line numbers when entering insert mode and switch
+		" back to relative line numbers when switching back to normal mode.
+		" This behaviour will be opposite if invert mode is on.
 		autocmd InsertEnter * :call g:numbertoggle.inserte()
 		autocmd InsertLeave * :call g:numbertoggle.insertl()
 	augroup END
