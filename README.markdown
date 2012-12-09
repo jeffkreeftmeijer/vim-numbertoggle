@@ -80,6 +80,17 @@ g:NumberToggleOn
 
 They control the respective mappings in their respective order.
 
+## Enabling invert mode
+
+If you want to enable invert mode, then all you gotta do is add the following
+to your .vimrc file:
+```viml
+let g:numbertoggle_invert=1
+```
+
+What is invert mode? Basically, it inverts the effects, so insert mode has
+relative line numbers while command mode has permanent line numbers, etc.
+
 # License
 
 Copyright 2012 [Jeff Kreeftmeijer](http://jeffkreeftmeijer.com/). Distributed under the [same terms as Vim itself][3]. See `:help license`.
