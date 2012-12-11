@@ -108,7 +108,7 @@ whatever mapping you want to use.
 
 By default numbertoggle is always on. If you want to change this behavior you
 can do so by putting the following in your .vimrc file: >
-    let g:default_off=1
+    let g:numbertoggle_defaultoff=1
 <
 
 This will disable numbertoggle at startup, until you remove this, and restart

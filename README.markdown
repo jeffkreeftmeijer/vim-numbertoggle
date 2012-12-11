@@ -49,7 +49,7 @@ for numbertoggle.
 
 By default, numbertoggle is always on. If you want to change this put the following in your `.vimrc` file:
 ```viml
-let g:default_off=1
+let g:numbertoggle_defaultoff=1
 ```
 
 This will disable it until you call it back on, or you delete that line and you restart Vim.
