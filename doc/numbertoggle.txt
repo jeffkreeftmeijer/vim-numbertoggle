@@ -9,6 +9,7 @@ CONTENTS                                               *numbertoggle-contents*
         1.1. Functionality ............ |numbertoggle-functionality|
         1.2. Key mappings ............. |numbertoggle-mappings|
     2. Installation ................... |numbertoggle-install|
+        2.1 Dependencies .............. |numbertoggle-dependencies|
     3. Settings ....................... |numbertoggle-settings|
         3.1. Toggle Trigger ........... |numbertoggle-toggletrigger|
         3.2. Disabling by default ..... |numbertoggle-defaultoff|
@@ -41,6 +42,7 @@ numbertoggle provides the following functionality:
     * Recognizes [Command Line] which can be invoked using 'q:', 'q/' or 'q?'
       and it automatically uses permanent line numbers exclusively, in order
       to be able to see which entry in the history it is.
+    * Recognizes Vundle buffers and only uses permanent line numbers on them.
     * Allows you to turn it off or on at your command (literally).
     * Allows you to disable it by default until you need it, and then you can
       disable it again if you want.
@@ -82,6 +84,16 @@ If you prefer Vundle you can copy&paste the following into your .vimrc file: >
 
 Once that is done, and you startup Vim, the help docs' tags will be generated
 and you can view the manual with ':h |numbertoggle|'
+
+------------------------------------------------------------------------------
+2.1 Dependencies                                   *numbertoggle-dependencies*
+
+In this section I will list some of the plugins on which numbertoggle may
+depend, or that would be very recommended to have:
+
+- vitality by sjl: https://github.com/sjl/vitality.vim
+It's pretty much a must if you use iTerm or tmux. Otherwise it's just a nice
+extra.
 
 ==============================================================================
 3. Settings                                            *numbertoggle-settings*

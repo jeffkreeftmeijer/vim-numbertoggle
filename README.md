@@ -40,6 +40,13 @@ Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 Once that is done, and you startup Vim, the help docs' tags will be generated and you can view the manual with `:h numbertoggle` to view most of what you're seeing right now.
 
+## Dependencies
+
+In this section I will list some of the plugins on which numbertoggle may depend, or that would be very recommended to have:
+
+- vitality by sjl: https://github.com/sjl/vitality.vim
+It's pretty much a must if you use iTerm or tmux and want to be able to use numbertoggle's lose focus or regain focus functionalities. Otherwise it's just a nice extra.
+
 # Settings
 
 In this section I'm gonna offer you some of the things that can be configured
