@@ -48,7 +48,7 @@ Once that is done, and you startup Vim, the help docs' tags will be generated an
 
 In this section I will list some of the plugins on which numbertoggle may depend, or that would be very recommended to have:
 
-- vitality by sjl: https://github.com/sjl/vitality.vim
+- vitality by sjl: https://github.com/sjl/vitality.vim <br />
 It's pretty much a must if you use iTerm or tmux and want to be able to use numbertoggle's lose focus or regain focus functionalities. Otherwise it's just a nice extra.
 
 # Settings
@@ -110,9 +110,9 @@ Copyright 2012 [Jeff Kreeftmeijer](http://jeffkreeftmeijer.com/). Distributed un
 
 Thanks to:
 
-- [@markus1189][@1] - For commits 93e1865b4d, dcfff5a2e6 and c07baef29c.
-- [@reedriley][@2] - For commits 6ae79447a1 to 592475df54.
-- [@Greduan][@3] - For complete re-write, making it more efficient. For improving docs. For lots of added features. For commits from 192a4e1353 to fded2c8989, and one more commit.
+- [@markus1189][@1] - For commits [93e1865b4d][sha1], [dcfff5a2e6][sha2] and [c07baef29c][sha3].
+- [@reedriley][@2] - For commits [6ae79447a1][sha4] to [592475df54][sha5].
+- [@Greduan][@3] - For complete re-write, making it more efficient. For improving docs. For lots of added features. For commits from [192a4e1353][sha6] to [0e812d1de7][sha7].
 
 [1]: http://www.vim.org/scripts/script.php?script_id=2332
 [2]: https://github.com/gmarik/vundle
@@ -124,3 +124,13 @@ Thanks to:
 
 [issue5]: https://github.com/jeffkreeftmeijer/vim-numbertoggle/issues/5
 [issue6]: https://github.com/jeffkreeftmeijer/vim-numbertoggle/issues/6
+
+[sha1]: https://github.com/Greduan/vim-numbertoggle/commit/93e1865b4db19811b0276c9c6505ad40a8ee7742
+[sha2]: https://github.com/Greduan/vim-numbertoggle/commit/dcfff5a2e67f0cbba2c686446c174bc59436d90d
+[sha3]: https://github.com/Greduan/vim-numbertoggle/commit/c07baef29c3caf7e4b38af2d0e2d10bb460ffe22
+
+[sha4]: https://github.com/Greduan/vim-numbertoggle/commit/6ae79447a15704c5442cc353b9781b36d3f28c5e
+[sha5]: https://github.com/Greduan/vim-numbertoggle/commit/592475df545f125054e5e7eb135c04d7f38d8329
+
+[sha6]: https://github.com/Greduan/vim-numbertoggle/commit/192a4e13538207f9f9f005be8204bcdc2fd52b2b
+[sha7]: https://github.com/Greduan/vim-numbertoggle/commit/0e812d1de7a447365bca204ce1363ad9818bc662
