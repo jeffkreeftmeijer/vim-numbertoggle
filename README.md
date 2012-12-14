@@ -18,9 +18,9 @@ numbertoggle provides the following functionality:
   - Switches to permanent line numbers when in insert mode.
   - Switches to relative line numbers when the buffer or window is in focus.
   - Switches to permanent line numbers when the buffer or window is not in focus.
-- Recognizes certain buffers and uses only a certainl line style on it.
+- Recognizes certain buffers and uses only a certain line style on it.
   - Recognizes `[Command Line]` buffers which can be invoked using `q:`, `q/` or `q?` and it automatically uses permanent line numbers exclusively, in order to be able to see which entry in the history it is.
-  - Recognizes `[Vundle] Installer` buffers which can be invoked using `:BundleInstall` and `:BundleUpdate` and only uses permanent line numbers on them, for you to know what amount of plugins Vundle is loading, and how many it has done.
+  - Recognizes `[Vundle] Installer` buffers which can be invoked using `:BundleInstall` and `:BundleUpdate` and only uses permanent line numbers on them, for you to know what amount of plugins Vundle is loading, and how many it has processed.
 - Allows you to turn it off or on at your command (literally).
 - Allows you to disable it by default until you need it, and then you can disable it again if you want.
 - Allows you to turn it off and on or toggle between relative and permanent line numbers, and all of these are configurable to a key mapping.
@@ -110,9 +110,9 @@ Copyright 2012 [Jeff Kreeftmeijer](http://jeffkreeftmeijer.com/). Distributed un
 
 Thanks to:
 
-* [@markus1189][@1] - For adding a check to make sure current version of Vim is compatible with numbertoggle. And for preventing plugin reloading. And for adding the `<silent>` flat to NumberToggle() calls. Adding .gitignore entry for docs' tags.
-* [@reedriley][@2] - For fixing inconsistent whitespace, fixing bug when regaining focus while in insert mode and for adding autocmds for setting appropiate mode when editing a file.
-* [@Greduan][@3] - For fixing issues [#5][issue5] and [#6][issue6]. For adding ability to turn on and off numbertoggle, at will. For making it more efficient. For improving documentation and REAMDE file.
+- [@markus1189][@1] - For commits 93e1865b4d, dcfff5a2e6 and c07baef29c.
+- [@reedriley][@2] - For commits 6ae79447a1 to 592475df54.
+- [@Greduan][@3] - For complete re-write, making it more efficient. For improving docs. For lots of added features. For commits from 192a4e1353 to fded2c8989, and one more commit.
 
 [1]: http://www.vim.org/scripts/script.php?script_id=2332
 [2]: https://github.com/gmarik/vundle

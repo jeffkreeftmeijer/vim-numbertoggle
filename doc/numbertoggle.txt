@@ -1,4 +1,4 @@
-*numbertoggle.txt* (auto-)toggeling for Vim line numbers
+*numbertoggle.txt*     For Vim version 7.3     Last change: 2012 December 14
 
 Author:  Jeff Kreeftmeijer (http://jeffkreeftmeijer.com)
 
@@ -34,24 +34,28 @@ http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-mov
 
 numbertoggle provides the following functionality:
 
+* Very lightweight, not loaded unless you enable it by default or you turn it
+  on after disabling it. As if it didn't exist if it's disabled.
+* Automatic switching between permanent and relative line numbers.
     * Switches to relative line numbers when in normal mode.
     * Switches to permanent line numbers when in insert mode.
     * Switches to relative line numbers when the buffer or window is in focus.
     * Switches to permanent line numbers when the buffer or window is not in
       focus.
-    * Recognizes [Command Line] which can be invoked using 'q:', 'q/' or 'q?'
-      and it automatically uses permanent line numbers exclusively, in order
-      to be able to see which entry in the history it is.
-    * Recognizes Vundle buffers and only uses permanent line numbers on them.
-    * Allows you to turn it off or on at your command (literally).
-    * Allows you to disable it by default until you need it, and then you can
-      disable it again if you want.
-    * Allows you to turn it off and on or toggle between relative and
-      permanent line numbers, and all of these are configurable to a key
-      mapping.
-    * Has an "invert mode", which allows you to change between normal behavior
-      and an inverted version of that (insert mode has relative line numbers,
-      etc.).
+* Recognizes certain buffers and uses only a certain line style on it.
+    * Recognizes "[Command Line]" buffers which can be invoked using 'q:',
+      'q/' or 'q?' and it automatically uses permanent line numbers
+      exclusively, in order to be able to see which entry in the history it
+      is.
+    * Recognizes "[Vundle] Installer" buffers which can be invoked using
+      ':BundleInstall' and ':BundleUpdate' and only uses permanent line
+      numbers on them, for you to know what amount of plugins Vundle is
+      loading, and how many it has processed.
+* Allows you to turn it off or on at your command (literally).
+* Allows you to disable it by default until you need it, and then you can
+  disable it again if you want.
+* Allows you to turn it off and on or toggle between relative and permanent
+  line numbers, and all of these are configurable to a key mapping.
 
 ------------------------------------------------------------------------------
 1.2. Key mappings                                      *numbertoggle-mappings*
@@ -175,15 +179,10 @@ https://github.com/jeffkreeftmeijer/vim-numbertoggle
 
 Thanks to:
 
- * {markus1189} - For adding a check to make sure current version of Vim is
-   compatible with numbertoggle. And for preventing plugin reloading. And
-   for adding the <silent> flat to NumberToggle() calls. Adding .gitignore
-   entry for docs' tags.
- * {reedriley} - For fixing inconsistent whitespace, fixing bug when regaining
-   focus while in insert mode and for adding autocmds for setting appropiate
-   mode when editing a file.
- * {Greduan} - For fixing issues #5 and #6. For adding ability to turn on and
-   off numbertoggle, at will. For making it more efficient. For implementing
-   invert mode.
+ * {markus1189} - For commits 93e1865b4d, dcfff5a2e6 and c07baef29c.
+ * {reedriley} - For commits 6ae79447a1 to 592475df54.
+ * {Greduan} - For complete re-write, making it more efficient. For improving
+               docs. For lots of added features. For commits from 192a4e1353
+               to fded2c8989, and one more commit.
 
  vim:tw=79:et:ft=help:norl:
