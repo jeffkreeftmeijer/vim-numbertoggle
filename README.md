@@ -12,14 +12,18 @@ http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-mov
 
 numbertoggle provides the following functionality:
 
-* Switches to relative line numbers when in normal mode.
-* Switches to permanent line numbers when in insert mode.
-* Switches to relative line numbers when the buffer or window is in focus.
-* Switches to permanent line numbers when the buffer or window is not in focus.
-* Recognizes `[Command Line]` which can be invoked using `q:`, `q/` or `q?` and it automatically uses permanent line numbers exclusively, in order to be able to see which entry in the history it is.
-* Allows you to turn it off or on at your command (literally).
-* Allows you to disable it by default until you need it, and then you can disable it again if you want.
-* Allows you to turn it off and on or toggle between relative and permanent line numbers, and all of these are configurable to a key mapping.
+- Very lightweight, not loaded unless you enable it by default or you turn it on after disabling it. As if it didn't exist if it's disabled.
+- Automatic switching between permanent and relative line numbers.
+  - Switches to relative line numbers when in normal mode.
+  - Switches to permanent line numbers when in insert mode.
+  - Switches to relative line numbers when the buffer or window is in focus.
+  - Switches to permanent line numbers when the buffer or window is not in focus.
+- Recognizes certain buffers and uses only a certainl line style on it.
+  - Recognizes `[Command Line]` buffers which can be invoked using `q:`, `q/` or `q?` and it automatically uses permanent line numbers exclusively, in order to be able to see which entry in the history it is.
+  - Recognizes `[Vundle] Installer` buffers which can be invoked using `:BundleInstall` and `:BundleUpdate` and only uses permanent line numbers on them, for you to know what amount of plugins Vundle is loading, and how many it has done.
+- Allows you to turn it off or on at your command (literally).
+- Allows you to disable it by default until you need it, and then you can disable it again if you want.
+- Allows you to turn it off and on or toggle between relative and permanent line numbers, and all of these are configurable to a key mapping.
 
 # Installation
 

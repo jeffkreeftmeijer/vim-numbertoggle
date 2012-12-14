@@ -5,12 +5,7 @@ if(bufname('%') == '[Command Line]')
 	call g:numbertoggle.disable()
 
 	" Disable numbertoggle completely
-	autocmd FocusLost * :call g:numbertoggle.disable()
-	autocmd FocusGained * :call g:numbertoggle.disable()
-	autocmd WinLeave * :call g:numbertoggle.disable()
-	autocmd WinEnter * :call g:numbertoggle.disable()
-	autocmd InsertEnter * :call g:numbertoggle.disable()
-	autocmd InsertLeave * :call g:numbertoggle.disable()
+	augroup! NumberToggle
 
 	" Only use permanent line numbers
 	set number
