@@ -5,6 +5,9 @@ if(bufname('%') == '[Vundle] Installer')
 	call g:numbertoggle.disable()
 
 	" Disable numbertoggle completely
+	augroup NumberToggle
+		autocmd!
+	augroup END
 	augroup! NumberToggle
 
 	" Only use permanent line numbers
