@@ -102,6 +102,24 @@ let g:numbertoggle_invert=1
 What is invert mode? Basically, it inverts the effects, so insert mode has
 relative line numbers while command mode has permanent line numbers, etc.
 
+## Default mode
+
+Just to clarify something, this default mmode is not when turned off, but rather for when it is turned off.
+
+When numbertoggle is turned off it stops having line numbers completely. If you prefer it to have relative or permanent line numbers when turned off you can now specify this in the following way:
+```viml
+let g:numbertoggle_defaultmodeoff = 'number'
+```
+
+This would achieve the following as a result:
+```viml
+set number
+```
+
+It's basically setting whatever string you input there, so it can also be a useful event if you like.
+
+This feature would also affect the default startup mode, whenever you disable numbertoggle's functionality by default, whatever mode specified here will be used, so it's useful in a manner of ways.
+
 # License
 
 Copyright 2012 [Jeff Kreeftmeijer](http://jeffkreeftmeijer.com/). Distributed under the [same terms as Vim itself][3]. See `:help license`.

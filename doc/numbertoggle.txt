@@ -1,4 +1,4 @@
-*numbertoggle.txt*     For Vim version 7.3     Last change: 2012 December 14
+*numbertoggle.txt*     For Vim version 7.3     Last change: 2012 December 18
 
 Author:  Jeff Kreeftmeijer (http://jeffkreeftmeijer.com)
 
@@ -15,6 +15,7 @@ CONTENTS                                               *numbertoggle-contents*
         3.2. Disabling by default ..... |numbertoggle-defaultoff|
         3.3. Enabline invert mode ..... |numbertoggle-invert|
         3.4. Configuring Key Mappings . |numbertoggle-configure-mappings|
+        4.5. Default mode ............. |numbertoggle-defaultmodeoff|
     4. About .......................... |numbertoggle-about|
     5. Credits ........................ |numbertoggle-credits|
 
@@ -162,6 +163,29 @@ Once you decide what you want to configure you can configure them as follows
 
 You can of course use your own key mapping, replacing {key-combo} with
 whatever mapping you want to use.
+
+------------------------------------------------------------------------------
+3.5. Default mode                                *numbertoggle-defaultmodeoff*
+
+Just to clarify something, this default mmode is not when turned off, but
+rather for when it is turned off.
+
+When numbertoggle is turned off it stops having line numbers completely. If
+you prefer it to have relative or permanent line numbers when turned off you
+can now specify this in the following way: >
+    let g:numbertoggle_defaultmodeoff = 'number'
+<
+
+This would achieve the following as a result: >
+    set number
+<
+
+It's basically setting whatever string you input there, so it can also be a
+useful event if you like.
+
+This feature would also affect the default startup mode, whenever you disable
+numbertoggle's functionality by default, whatever mode specified here will be
+used, so it's useful in a manner of ways.
 
 ==============================================================================
 4. About                                                  *numbertoggle-about*

@@ -7,12 +7,17 @@ endif
 
 let g:loaded_numbertoggle=1
 
-if exists('g:default_off') "{{{1
+if exists('g:numbertoggle_defaultoff') "{{{1
 
 	if exists('g:NumberToggleOn')
 		exec 'nnoremap <silent> ' . g:NumberToggleOn . ' :call call(g:number_toggle#numbertoggle.source,[],{})<CR>'
 	else
 		nnoremap <silent> <C-m> :call call(g:number_toggle#numbertoggle.source, [], {})<CR>
+	endif
+
+	" Set the default line numbers for when it is turned off.
+	if exists('g:numbertoggle_defaultmodeoff')
+		exec 'set ' . g:numbertoggle_defaultmodeoff
 	endif
 
 	finish

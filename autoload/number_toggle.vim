@@ -117,26 +117,48 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 	let s:numbertoggle_lhs=exists('g:NumberToggleOff') ?g:NumberToggleOff : '<C-b>'
 	exec 'nnoremap <silent> ' . s:numbertoggle_lhs . ' :call call(g:number_toggle#numbertoggle.unload, [], {})<CR>'
 
+	" Check if it was previously turned off, if it was then when turned on
+	" make sure to turn on line numbers, and make it so that it wasn't
+	" previously turned on.
+	if exists('g:numbertoggle_previouslyon')
+		if g:numbertoggle_previouslyon == 1
+			call g:numbertoggle.updatemode()
+			let g:numbertoggle_previously=0
+		endif
+	endif
+
 endfunction "}}}1
 
 function! g:number_toggle#numbertoggle.unload() "{{{1
 
-	" Undefine the augroup used for plugin functionality
-	augroup NumberToggle
-		autocmd!
-	augroup END
-	augroup! NumberToggle
+	if exists('g:number_toggle#numbertoggle.source()')
 
-	" Disable any options that may have been set
-	set nonumber
-	set norelativenumber
+		" Undefine the augroup used for plugin functionality
+		augroup NumberToggle
+			autocmd!
+		augroup END
+		augroup! NumberToggle
 
-	" Get rid of everything that the .source() function set
-	execute 'nunmap' s:numbertoggle_lhs
-	unlet g:numbertoggle
-	unlet s:numbertoggle_insertmode
-	unlet s:numbertoggle_focus
-	unlet s:numbertoggle_lhs
-	
+		" Disable any options that may have been set
+		set nonumber
+		set norelativenumber
+
+		" Get rid of everything that the .source() function set
+		execute 'nunmap' s:numbertoggle_lhs
+		unlet g:numbertoggle
+		unlet s:numbertoggle_insertmode
+		unlet s:numbertoggle_focus
+		unlet s:numbertoggle_lhs
+
+		" Set the default line numbers for when it is turned off.
+		if exists('g:numbertoggle_defaultmodeoff')
+			exec 'set ' . g:numbertoggle_defaultmodeoff
+		endif
+
+		" Make sure numbertoggle knows it has previously been on and has been
+		" turned off.
+		let g:numbertoggle_previouslyon=1
+
+	endif
 
 endfunction "}}}1
