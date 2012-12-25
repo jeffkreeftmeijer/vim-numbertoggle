@@ -31,10 +31,12 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 		" If invert mode is set
 		if exists('g:numbertoggle_invert')
 			if(s:numbertoggle_focus == 0)
+				let &nuw=max([3, 1+strlen(line('$'))])
 				set relativenumber
 			elseif(s:numbertoggle_insertmode == 0)
 				set number
 			else
+				let &nuw=max([3, 1+strlen(line('$'))])
 				set relativenumber
 			endif
 		endif
@@ -44,6 +46,7 @@ function! g:number_toggle#numbertoggle.source() "{{{1
 			if(s:numbertoggle_focus == 0)
 				set number
 			elseif(s:numbertoggle_insertmode == 0)
+				let &nuw=max([3, 1+strlen(line('$'))])
 				set relativenumber
 			else
 				set number
