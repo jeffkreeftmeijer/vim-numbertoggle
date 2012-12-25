@@ -206,7 +206,7 @@ Thanks to:
  * {markus1189} - For commits 93e1865b4d, dcfff5a2e6 and c07baef29c.
  * {reedriley} - For commits 6ae79447a1 to 592475df54.
  * {Greduan} - For complete re-write, making it more efficient. For improving
-               docs. For lots of added features. For commits from 192a4e1353
-               to fded2c8989, and one more commit.
+               docs. For lots of added features.
+ * {ClementJunca} - For implementing the stable line number width.
 
  vim:tw=79:et:ft=help:norl:
