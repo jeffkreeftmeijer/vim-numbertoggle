@@ -1,26 +1,212 @@
-*numbertoggle.txt*	(auto-)toggeling for Vim line numbers
+*numbertoggle.txt*     For Vim version 7.3     Last change: 2012 December 18
 
-Author:  Jeff Kreeftmeijer <http://jeffkreeftmeijer.com>
+Author:  Jeff Kreeftmeijer (http://jeffkreeftmeijer.com)
 
-INTRODUCTION                                    *numbertoggle*
+==============================================================================
+CONTENTS                                               *numbertoggle-contents*
 
-While Vim's relativenumber option is great, you probably don't want to use it
-all the time. numbertoggle allows you to quickly toggle between relative and
-absolute line numbers and cleverly switches when when focus is lost or gained
-or when switching between normal and insert mode.
+    1. Introduction ................... |numbertoggle-intro|
+        1.1. Functionality ............ |numbertoggle-functionality|
+        1.2. Key mappings ............. |numbertoggle-mappings|
+    2. Installation ................... |numbertoggle-install|
+        2.1 Dependencies .............. |numbertoggle-dependencies|
+    3. Settings ....................... |numbertoggle-settings|
+        3.1. Toggle Trigger ........... |numbertoggle-toggletrigger|
+        3.2. Disabling by default ..... |numbertoggle-defaultoff|
+        3.3. Enabline invert mode ..... |numbertoggle-invert|
+        3.4. Configuring Key Mappings . |numbertoggle-configure-mappings|
+        4.5. Default mode ............. |numbertoggle-defaultmodeoff|
+    4. About .......................... |numbertoggle-about|
+    5. Credits ........................ |numbertoggle-credits|
 
-TRIGGER                                         *numbertoggle-trigger*
+==============================================================================
+1. Introduction                                           *numbertoggle-intro*
 
-NumberToggle sets up <C-n> to toggle from absolute to relative line numbers by
-default, but you can set up another trigger if you prefer. If you want to
-toggle using <F2>, for example, put this into your ~/.vimrc file:
+While Vim's |relativenumber| option is great, you probably don't want to use
+it all the time. numbertoggle allows you to quickly toggle between relative
+and absolute line numbers and cleverly switches when when focus is lost or
+gained or when switching between normal and insert mode.
 
-  let g:NumberToggleTrigger="<F2>"
+For more information:
+http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement
 
-ABOUT                                           *numbertoggle-about*
+------------------------------------------------------------------------------
+1.1 Functionality                                 *numbertoggle-functionality*
 
-Grab the latest version or report a bug on GitHub:
+numbertoggle provides the following functionality:
 
-http://github.com/jeffkreeftmeijer/vim-numbertoggle
+* Very lightweight, not loaded unless you enable it by default or you turn it
+  on after disabling it. As if it didn't exist if it's disabled.
+* Automatic switching between permanent and relative line numbers.
+    * Switches to relative line numbers when in normal mode.
+    * Switches to permanent line numbers when in insert mode.
+    * Switches to relative line numbers when the buffer or window is in focus.
+    * Switches to permanent line numbers when the buffer or window is not in
+      focus.
+* Recognizes certain buffers and uses only a certain line style on it.
+    * Recognizes "[Command Line]" buffers which can be invoked using 'q:',
+      'q/' or 'q?' and it automatically uses permanent line numbers
+      exclusively, in order to be able to see which entry in the history it
+      is.
+    * Recognizes "[Vundle] Installer" buffers which can be invoked using
+      ':BundleInstall' and ':BundleUpdate' and only uses permanent line
+      numbers on them, for you to know what amount of plugins Vundle is
+      loading, and how many it has processed.
+* Allows you to turn it off or on at your command (literally).
+* Allows you to disable it by default until you need it, and then you can
+  disable it again if you want.
+* Allows you to turn it off and on or toggle between relative and permanent
+  line numbers, and all of these are configurable to a key mapping.
 
- vim:tw=78:et:ft=help:norl:
+------------------------------------------------------------------------------
+1.2. Key mappings                                      *numbertoggle-mappings*
+
+This section will contain all the keymappings that numbertoggle provides by
+default, and how to configure them.
+
++---------+------------------------+----------------------------------+
+| Mapping | Description            | Help Link (if any)               |
++---------+------------------------+----------------------------------+
+| <C-b>   | Turn numbertoggle off. | |numbertoggle-configure-mapppings| |
+| <C-n>   | Toggle Trigger.        | |numbertoggle-toggletrigger|       |
+| <C-m>   | Turn numbertoggle on.  | |numbertoggle-configure-mapppings| |
++---------+------------------------+----------------------------------+
+
+==============================================================================
+2. Installation                                         *numbertoggle-install*
+
+If you don't have a preffered installation method, I recommend using Pathogen
+(script #2332) or Vundle (github.com/gmarik/vundle).
+
+If you prefer Pathogen you can copy&paste the following into your Terminal: >
+    cd ~/.vim/bundle
+    git clone git://github.com/jeffkreeftmeijer/vim-numbertoggle.git
+<
+
+If you prefer Vundle you can copy&paste the following into your .vimrc file: >
+    Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+<
+
+Once that is done, and you startup Vim, the help docs' tags will be generated
+and you can view the manual with ':h |numbertoggle|'
+
+------------------------------------------------------------------------------
+2.1 Dependencies                                   *numbertoggle-dependencies*
+
+In this section I will list some of the plugins on which numbertoggle may
+depend, or that would be very recommended to have:
+
+- vitality by sjl: https://github.com/sjl/vitality.vim
+It's pretty much a must if you use iTerm or tmux. Otherwise it's just a nice
+extra.
+
+==============================================================================
+3. Settings                                            *numbertoggle-settings*
+
+In this section I'm gonna offer you some of the things that can be configured
+for numbertoggle. Mappings mostly.
+
+------------------------------------------------------------------------------
+3.1. The Toggle Trigger                           *numbertoggle-toggletrigger*
+
+numbertoggle provides a key mapping to toggle between relative and permanent
+line numbers temporarily.
+
+By default this key mapping is <C-n>, if you want to change this you can put
+the following into your .vimrc file: >
+    let g:NumberToggleTrigger='key-combo'
+<
+
+You can of course use your own key mapping, replacing {key-combo} with
+whatever mapping you want to use.
+
+------------------------------------------------------------------------------
+3.2. Disabling by default                            *numbertoggle-defaultoff*
+
+By default numbertoggle is always on. If you want to change this behavior you
+can do so by putting the following in your .vimrc file: >
+    let g:numbertoggle_defaultoff=1
+<
+
+This will disable numbertoggle at startup, until you remove this, and restart
+Vim, or you turn it back on with <C-m> (by default).
+
+This was added due to this issue in GitHub:
+https://github.com/jeffkreeftmeijer/vim-numbertoggle/issues/5
+
+------------------------------------------------------------------------------
+3.3 Enabling invert mode                                 *numbertoggle-invert*
+
+If you want to enable invert mode, then all you gotta do is add the following
+to your .vimrc file: >
+    let g:numbertoggle_invert=1
+<
+
+What is invert mode? Basically, it inverts the effects, so insert mode has
+relative line numbers while command mode has permanent line numbers, etc.
+
+------------------------------------------------------------------------------
+3.4. Configuring Key Mappings                *numbertoggle-configure-mappings*
+
+numbertoggle allows you to easily configure the built-in mappings. As any
+plugin should.
+
+If you want to configure any of the mappings, first check which one you want
+to configure: |numbertoggle-mappings|
+
+Once you decide what you want to configure you can configure them as follows
+(in the order that they're presented in the mappings section): >
+    let g:NumberToggleOff='key-combo'
+    let g:NumberToggleTrigger='key-combo'
+    let g:NumberToggleOn='key-combo'
+<
+
+You can of course use your own key mapping, replacing {key-combo} with
+whatever mapping you want to use.
+
+------------------------------------------------------------------------------
+3.5. Default mode                                *numbertoggle-defaultmodeoff*
+
+Just to clarify something, this default mmode is not when turned off, but
+rather for when it is turned off.
+
+When numbertoggle is turned off it stops having line numbers completely. If
+you prefer it to have relative or permanent line numbers when turned off you
+can now specify this in the following way: >
+    let g:numbertoggle_defaultmodeoff = 'number'
+<
+
+This would achieve the following as a result: >
+    set number
+<
+
+It's basically setting whatever string you input there, so it can also be a
+useful event if you like.
+
+This feature would also affect the default startup mode, whenever you disable
+numbertoggle's functionality by default, whatever mode specified here will be
+used, so it's useful in a manner of ways.
+
+==============================================================================
+4. About                                                  *numbertoggle-about*
+
+numbertoggle was developed by Jeff Kreeftmeijer (http://jeffkreeftmeijer.com)
+
+Copyright 2012 Jeff Kreeftmeijer. Distributed under the same terms as Vim
+itself, see: ':h license'
+
+The GitHub repo with the latest update is available at:
+https://github.com/jeffkreeftmeijer/vim-numbertoggle
+
+==============================================================================
+5. Credits                                              *numbertoggle-credits*
+
+Thanks to:
+
+ * {markus1189} - For commits 93e1865b4d, dcfff5a2e6 and c07baef29c.
+ * {reedriley} - For commits 6ae79447a1 to 592475df54.
+ * {Greduan} - For complete re-write, making it more efficient. For improving
+               docs. For lots of added features.
+ * {ClementJunca} - For implementing the stable line number width.
+
+ vim:tw=79:et:ft=help:norl:
