@@ -27,7 +27,7 @@ function! UpdateMode()
 	end
 	" Avoid changing actual width of the number column with each jump between
 	" number and relativenumber:
-	let &numberwidth = max([4, 1+float2nr(ceil(log10(1+line('$'))))])
+	let &numberwidth = max([4, 1+len(line('$'))])
 	" Explanation of the calculation:
 	" - Add 1 to the number of lines before the ceil+log to wrap over correctly
 	"   999->3, 1000->4, 9999->4, 10000->5, ...
