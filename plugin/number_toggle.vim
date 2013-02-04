@@ -74,6 +74,4 @@ autocmd InsertLeave * :call InsertLeave()
 
 if exists('g:NumberToggleTrigger')
 	exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call NumberToggle()<cr>"
-else
-	nnoremap <silent> <C-n> :call NumberToggle()<cr>
 endif
