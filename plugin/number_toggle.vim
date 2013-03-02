@@ -4,6 +4,13 @@
 if exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
 endif
+
+" Configurable Option: Only show line numbers if we have more than x columns.
+" Example: let g:numbertoggle_min_cols=80
+if (!exists("g:numbertoggle_min_cols"))
+	let g:numbertoggle_min_cols=0
+endif
+
 let g:loaded_numbertoggle = 1
 let g:insertmode = 0
 let g:focus = 1
@@ -18,19 +25,25 @@ function! NumberToggle()
 endfunc
 
 function! UpdateMode()
-	if(g:focus == 0)
-		set number
-	elseif(g:insertmode == 0)
-		set relativenumber
-	else
-		set number
-	end
 	" Avoid changing actual width of the number column with each jump between
 	" number and relativenumber:
 	let &numberwidth = max([4, 1+len(line('$'))])
 	" Explanation of the calculation:
 	" - Add 1 to the calculated maximal width to make room for the space
 	" - Assume 4 as the minimum desired width.
+
+	if (winwidth(0) - &numberwidth + 1 > g:numbertoggle_min_cols)
+		if(g:focus == 0)
+			set number
+		elseif(g:insertmode == 0)
+			set relativenumber
+		else
+			set number
+		end
+	else
+		set nonumber
+		set norelativenumber
+	endif
 endfunc
 
 function! FocusGained()
@@ -53,6 +66,9 @@ function! InsertEnter()
 	call UpdateMode()
 endfunc
 
+
+" Automatically turn line numbering on and off when the window resizes
+autocmd VimResized * :call UpdateMode()
 
 " Automatically set relative line numbers when opening a new document
 autocmd BufNewFile * :call UpdateMode()
