@@ -17,6 +17,16 @@ toggle using <F2>, for example, put this into your ~/.vimrc file:
 
   let g:NumberToggleTrigger="<F2>"
 
+MINIMUM EDITOR WIDTH                            *numbertoggle-min-cols*
+
+When g:numbertoggle_min_cols is set, the plugin will only show line numbers
+if there are at least g:numbertoggle_min_cols available in your window.
+
+This allows one to have the line numbering turned off when working in
+narrow terminals and activate automatically for wider terminals.
+
+  let g:numbertoggle_min_cols=80
+
 ABOUT                                           *numbertoggle-about*
 
 Grab the latest version or report a bug on GitHub:
