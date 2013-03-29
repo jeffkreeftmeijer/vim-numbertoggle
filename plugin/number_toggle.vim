@@ -25,12 +25,18 @@ function! UpdateMode()
 	else
 		set number
 	end
-	" Avoid changing actual width of the number column with each jump between
-	" number and relativenumber:
-	let &numberwidth = max([4, 1+len(line('$'))])
-	" Explanation of the calculation:
-	" - Add 1 to the calculated maximal width to make room for the space
-	" - Assume 4 as the minimum desired width.
+	
+	if !exists("&numberwidth") || &numberwidth <= 4
+		" Avoid changing actual width of the number column with each jump between
+		" number and relativenumber:
+		let &numberwidth = max([4, 1+len(line('$'))])
+		" Explanation of the calculation:
+		" - Add 1 to the calculated maximal width to make room for the space
+		" - Assume 4 as the minimum desired width if &numberwidth is not set or is
+		"		smaller than 4
+	else
+		let &numberwidth = max([&numberwidth, 1+len(line('$'))])
+	endif
 endfunc
 
 function! FocusGained()
