@@ -11,8 +11,9 @@ or when switching between normal and insert mode.
 
 TRIGGER                                         *numbertoggle-trigger*
 
-NumberToggle sets up <C-n> to toggle from absolute to relative line numbers by
-default, but you can set up another trigger if you prefer. If you want to
+In case g:UseNumberToggleTrigger is unset or true, NumberToggle sets
+up <C-n> to toggle from absolute to relative line numbers.
+You can set up another trigger if you prefer. If you want to
 toggle using <F2>, for example, put this into your ~/.vimrc file:
 
   let g:NumberToggleTrigger="<F2>"
