@@ -18,15 +18,13 @@ function! NumberToggle()
 endfunc
 
 function! UpdateMode()
-	if buflisted(bufnr("%"))
-		if(g:focus == 0)
-			set number
-		elseif(g:insertmode == 0)
-			set relativenumber
-		else
-			set number
-		end
-	endif
+	if(g:focus == 0)
+		set number
+	elseif(g:insertmode == 0)
+		set relativenumber
+	else
+		set number
+	end
 	
 	if !exists("&numberwidth") || &numberwidth <= 4
 		" Avoid changing actual width of the number column with each jump between
