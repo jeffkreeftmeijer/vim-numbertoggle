@@ -30,11 +30,11 @@ function! UpdateMode()
 		" Avoid changing actual width of the number column with each jump between
 		" number and relativenumber:
 		let &numberwidth = max([4, 1+len(line('$'))])
+	else
 		" Explanation of the calculation:
 		" - Add 1 to the calculated maximal width to make room for the space
 		" - Assume 4 as the minimum desired width if &numberwidth is not set or is
-		"		smaller than 4
-	else
+		"   smaller than 4
 		let &numberwidth = max([&numberwidth, 1+len(line('$'))])
 	endif
 endfunc
