@@ -7,20 +7,23 @@ endif
 let g:loaded_numbertoggle = 1
 let g:insertmode = 0
 let g:focus = 1
+let g:relativemode = 1
 
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
 	if(&relativenumber == 1)
 		set number
+        let g:relativemode = 0
 	else
 		set relativenumber
+        let g:relativemode = 1
 	endif
 endfunc
 
 function! UpdateMode()
 	if(g:focus == 0)
 		set number
-	elseif(g:insertmode == 0)
+	elseif(g:insertmode == 0 && g:relativemode == 1)
 		set relativenumber
 	else
 		set number
