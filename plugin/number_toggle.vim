@@ -18,6 +18,10 @@ function! NumberToggle()
 endfunc
 
 function! UpdateMode()
+	if(&number == 0 && &relativenumber == 0)
+		return
+	end
+
 	if(g:focus == 0)
 		set number
 	elseif(g:insertmode == 0)
