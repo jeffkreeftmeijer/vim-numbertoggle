@@ -1,5 +1,5 @@
 " Prevent multi loads and disable in compatible mode
-" check if vim version is at least 7.3 
+" check if vim version is at least 7.3
 " (relativenumber is not supported below)
 if exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
@@ -13,10 +13,10 @@ let g:relativemode = 1
 function! NumberToggle()
 	if(&relativenumber == 1)
 		set number
-        let g:relativemode = 0
+		let g:relativemode = 0
 	else
 		set relativenumber
-        let g:relativemode = 1
+		let g:relativemode = 1
 	endif
 endfunc
 
