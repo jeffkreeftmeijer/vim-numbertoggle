@@ -1,5 +1,5 @@
 " Prevent multi loads and disable in compatible mode
-" check if vim version is at least 7.3 
+" check if vim version is at least 7.3
 " (relativenumber is not supported below)
 if exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
@@ -8,15 +8,25 @@ let g:loaded_numbertoggle = 1
 let g:insertmode = 0
 let g:focus = 1
 let g:relativemode = 1
+" set to 1 to only toggle relativenumber (allowing to use it with number); Else
+" number will also be toggled when needed, so it's either relativenumber or
+" number, but never both at the same time
+let g:only_toggle_relativenumber = 1
 
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
 	if(&relativenumber == 1)
-		set number
-        let g:relativemode = 0
+		set norelativenumber
+		if(g:only_toggle_relativenumber == 0)
+			set number
+		endif
+		let g:relativemode = 0
 	else
 		set relativenumber
-        let g:relativemode = 1
+		if(g:only_toggle_relativenumber == 0)
+			set nonumber
+		endif
+		let g:relativemode = 1
 	endif
 endfunc
 
@@ -26,11 +36,20 @@ function! UpdateMode()
 	end
 
 	if(g:focus == 0)
-		set number
+		set norelativenumber
+		if(g:only_toggle_relativenumber == 0)
+			set number
+		endif
 	elseif(g:insertmode == 0 && g:relativemode == 1)
 		set relativenumber
+		if(g:only_toggle_relativenumber == 0)
+			set nonumber
+		endif
 	else
-		set number
+		set norelativenumber
+		if(g:only_toggle_relativenumber == 0)
+			set number
+		endif
 	end
 	
 	if !exists("&numberwidth") || &numberwidth <= 4
