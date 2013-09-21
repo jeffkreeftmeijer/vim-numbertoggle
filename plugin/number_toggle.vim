@@ -1,5 +1,5 @@
 " Prevent multi loads and disable in compatible mode
-" check if vim version is at least 7.3 
+" check if vim version is at least 7.3
 " (relativenumber is not supported below)
 if exists('g:loaded_numbertoggle') || &cp || v:version < 703
 	finish
@@ -9,14 +9,27 @@ let g:insertmode = 0
 let g:focus = 1
 let g:relativemode = 1
 
+" Enables relative numbers.
+function! EnableRelativeNumbers()
+  set relativenumber
+endfunc
+
+" Disables relative numbers.
+function! DisableRelativeNumbers()
+  set number
+  if v:version >= 704
+    set norelativenumber
+  endif
+endfunc
+
 " NumberToggle toggles between relative and absolute line numbers
 function! NumberToggle()
 	if(&relativenumber == 1)
-		set number
-        let g:relativemode = 0
+    call DisableRelativeNumbers()
+    let g:relativemode = 0
 	else
-		set relativenumber
-        let g:relativemode = 1
+    call EnableRelativeNumbers()
+    let g:relativemode = 1
 	endif
 endfunc
 
@@ -26,13 +39,13 @@ function! UpdateMode()
 	end
 
 	if(g:focus == 0)
-		set number
+		call DisableRelativeNumbers()
 	elseif(g:insertmode == 0 && g:relativemode == 1)
-		set relativenumber
+		call EnableRelativeNumbers()
 	else
-		set number
+		call DisableRelativeNumbers()
 	end
-	
+
 	if !exists("&numberwidth") || &numberwidth <= 4
 		" Avoid changing actual width of the number column with each jump between
 		" number and relativenumber:
