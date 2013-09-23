@@ -17,9 +17,7 @@ endfunc
 " Disables relative numbers.
 function! DisableRelativeNumbers()
   set number
-  if v:version >= 704
-    set norelativenumber
-  endif
+  set norelativenumber
 endfunc
 
 " NumberToggle toggles between relative and absolute line numbers
