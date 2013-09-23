@@ -11,6 +11,7 @@ let g:relativemode = 1
 
 " Enables relative numbers.
 function! EnableRelativeNumbers()
+  set nonumber
   set relativenumber
 endfunc
 
