@@ -11,14 +11,14 @@ let g:relativemode = 1
 
 " Enables relative numbers.
 function! EnableRelativeNumbers()
-  set nonumber
+  set number
   set relativenumber
 endfunc
 
 " Disables relative numbers.
 function! DisableRelativeNumbers()
-  set number
   set norelativenumber
+  set number
 endfunc
 
 " NumberToggle toggles between relative and absolute line numbers
