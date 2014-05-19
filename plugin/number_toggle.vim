@@ -39,6 +39,19 @@ function! s:NumberToggle()
     endif
 endfunc
 
+" Completely hides all numbers if showing;
+" shows them again if not showing
+function! s:NumberToggleShowHideAll()
+    if &relativenumber || &number
+        set nonumber
+        set norelativenumber
+    else
+        set number
+        set relativenumber
+        call s:UpdateMode()
+    endif
+endfunc
+
 function! s:UpdateMode()
     if &number == 0 && &relativenumber == 0
         return
@@ -120,6 +133,7 @@ endif
 
 " Plugin Key mapping to toggle NumberToggle
 nnoremap <silent> <Plug>NumberToggleTrigger :call <SID>NumberToggle()<CR>
+nnoremap <silent> <Plug>NumberToggleShowHideAll :call <SID>NumberToggleShowHideAll()<CR>
 
 " Define key mapping
 if exists('g:NumberToggleTrigger')
