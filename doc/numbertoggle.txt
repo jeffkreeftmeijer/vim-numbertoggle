@@ -1,6 +1,7 @@
 *numbertoggle.txt*	(auto-)toggeling for Vim line numbers
 
 Author:  Jeff Kreeftmeijer <http://jeffkreeftmeijer.com>
+Modified by: Jeet Sukumaran <http://jeetworks.org>
 
 INTRODUCTION                                    *numbertoggle*
 
@@ -16,7 +17,7 @@ up <C-n> to toggle from absolute to relative line numbers.
 You can set up another trigger if you prefer. If you want to
 toggle using <F2>, for example, put this into your ~/.vimrc file:
 
-  let g:NumberToggleTrigger="<F2>"
+    nmap <silent> <F2> <Plug>NumberToggleTrigger
 
 ABOUT                                           *numbertoggle-about*
 

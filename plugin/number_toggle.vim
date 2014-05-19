@@ -28,11 +28,6 @@ function! s:DisableRelativeNumbers()
     set norelativenumber
 endfunc
 
-function! s:DisableAllNumbers()
-    set nonumber
-    set norelativenumber
-endfunction
-
 " NumberToggle toggles between relative and absolute line numbers
 function! s:NumberToggle()
     if &relativenumber == 1
@@ -90,29 +85,33 @@ function! s:InsertEnter()
     call s:UpdateMode()
 endfunc
 
+if has("autocmd")
+    augroup NumberToggle
+        autocmd!
+        " Automatically set relative line numbers when opening a new document
+        autocmd BufNewFile * :call <SID>UpdateMode()
+        autocmd BufReadPost * :call <SID>UpdateMode()
+        autocmd FilterReadPost * :call <SID>UpdateMode()
+        autocmd FileReadPost * :call <SID>UpdateMode()
 
-" Automatically set relative line numbers when opening a new document
-autocmd BufNewFile * :call <SID>UpdateMode()
-autocmd BufReadPost * :call <SID>UpdateMode()
-autocmd FilterReadPost * :call <SID>UpdateMode()
-autocmd FileReadPost * :call <SID>UpdateMode()
+        " Automatically switch to absolute numbers when focus is lost and switch back
+        " when the focus is regained.
+        autocmd FocusLost * :call <SID>FocusLost()
+        autocmd FocusGained * :call <SID>FocusGained()
+        autocmd WinLeave * :call <SID>FocusLost()
+        autocmd WinEnter * :call <SID>FocusGained()
 
-" Automatically switch to absolute numbers when focus is lost and switch back
-" when the focus is regained.
-autocmd FocusLost * :call <SID>FocusLost()
-autocmd FocusGained * :call <SID>FocusGained()
-autocmd WinLeave * :call <SID>FocusLost()
-autocmd WinEnter * :call <SID>FocusGained()
+        " Switch to absolute line numbers when the window loses focus and switch back
+        " to relative line numbers when the focus is regained.
+        autocmd WinLeave * :call <SID>FocusLost()
+        autocmd WinEnter * :call <SID>FocusGained()
 
-" Switch to absolute line numbers when the window loses focus and switch back
-" to relative line numbers when the focus is regained.
-autocmd WinLeave * :call <SID>FocusLost()
-autocmd WinEnter * :call <SID>FocusGained()
-
-" Switch to absolute line numbers when entering insert mode and switch back to
-" relative line numbers when switching back to normal mode.
-autocmd InsertEnter * :call <SID>InsertEnter()
-autocmd InsertLeave * :call <SID>InsertLeave()
+        " Switch to absolute line numbers when entering insert mode and switch back to
+        " relative line numbers when switching back to normal mode.
+        autocmd InsertEnter * :call <SID>InsertEnter()
+        autocmd InsertLeave * :call <SID>InsertLeave()
+    augroup end
+endif
 
 " ensures default behavior / backward compatibility
 if ! exists ( 'g:UseNumberToggleTrigger' )
