@@ -26,7 +26,7 @@ can map a key to `<Plug>NumberToggleShowHideAll`. This is not mapped by
 default, but to map this functionality to, for example, '<Leader><F3>', add the
 following to your ~/.vimrc file:
 
-    nmap <silent> <Leader><F2> <Plug>NumberToggleShowHideAll
+    nmap <silent> <Leader><F3> <Plug>NumberToggleShowHideAll
 
 ABOUT                                           *numbertoggle-about*
 
