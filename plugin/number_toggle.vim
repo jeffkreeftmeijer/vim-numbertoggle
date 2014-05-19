@@ -5,14 +5,20 @@ if exists('g:loaded_numbertoggle') || &cp || v:version < 703
     finish
 endif
 let g:loaded_numbertoggle = 1
+if !exists("g:numbertoggle_show_current_line_number_in_relativemode")
+    let g:numbertoggle_show_current_line_number_in_relativemode = 1
+endif
 let s:insertmode = 0
 let s:focus = 1
 let s:relativemode = 1
 
 " Enables relative numbers.
 function! s:EnableRelativeNumbers()
-    " set nonumber
-    set nonumber
+    if !g:numbertoggle_show_current_line_number_in_relativemode
+        set nonumber
+    else
+        set number
+    endif
     set relativenumber
 endfunc
 
@@ -22,9 +28,14 @@ function! s:DisableRelativeNumbers()
     set norelativenumber
 endfunc
 
+function! s:DisableAllNumbers()
+    set nonumber
+    set norelativenumber
+endfunction
+
 " NumberToggle toggles between relative and absolute line numbers
 function! s:NumberToggle()
-    if(&relativenumber == 1)
+    if &relativenumber == 1
         call s:DisableRelativeNumbers()
         let s:relativemode = 0
     else
@@ -34,13 +45,13 @@ function! s:NumberToggle()
 endfunc
 
 function! s:UpdateMode()
-    if(&number == 0 && &relativenumber == 0)
+    if &number == 0 && &relativenumber == 0
         return
     end
 
-    if(s:focus == 0)
+    if s:focus == 0
         call s:DisableRelativeNumbers()
-    elseif(s:insertmode == 0 && s:relativemode == 1)
+    elseif s:insertmode == 0 && s:relativemode == 1
         call s:EnableRelativeNumbers()
     else
         call s:DisableRelativeNumbers()
@@ -108,8 +119,12 @@ if ! exists ( 'g:UseNumberToggleTrigger' )
     let g:UseNumberToggleTrigger = 1
 endif
 
+" Plugin Key mapping to toggle NumberToggle
+nnoremap <silent> <Plug>NumberToggleTrigger :call <SID>NumberToggle()<CR>
+
+" Define key mapping
 if exists('g:NumberToggleTrigger')
-    exec "nnoremap <silent> " . g:NumberToggleTrigger . " :call <SID>NumberToggle()<cr>"
-elseif g:UseNumberToggleTrigger
-    nnoremap <silent> <C-n> :call <SID>NumberToggle()<cr>
+    execute "nmap <silent> " . g:NumberToggleTrigger  . " <Plug>NumberToggleTrigger"
+elseif g:UseNumberToggleTrigger && !hasmapto("<Plug>NumberToggleTrigger")
+    nmap <silent> <C-n> <Plug>NumberToggleTrigger
 endif
