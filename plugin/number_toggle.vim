@@ -11,6 +11,7 @@ let s:relativemode = 1
 
 " Enables relative numbers.
 function! s:EnableRelativeNumbers()
+    " set nonumber
     set nonumber
     set relativenumber
 endfunc
