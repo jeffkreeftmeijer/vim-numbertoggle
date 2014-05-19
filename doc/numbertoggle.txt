@@ -15,9 +15,18 @@ TRIGGER                                         *numbertoggle-trigger*
 In case g:UseNumberToggleTrigger is unset or true, NumberToggle sets
 up <C-n> to toggle from absolute to relative line numbers.
 You can set up another trigger if you prefer. If you want to
-toggle using <F2>, for example, put this into your ~/.vimrc file:
+toggle using <F3>, for example, put this into your ~/.vimrc file:
 
-    nmap <silent> <F2> <Plug>NumberToggleTrigger
+    nmap <silent> <F3> <Plug>NumberToggleTrigger
+
+SHOW/HIDE ALL NUMBERS                        *numbertoggle-showhide*
+
+If you want a convenient way to show or hide *all* numbers in the buffer, you
+can map a key to `<Plug>NumberToggleShowHideAll`. This is not mapped by
+default, but to map this functionality to, for example, '<Leader><F3>', add the
+following to your ~/.vimrc file:
+
+    nmap <silent> <Leader><F2> <Plug>NumberToggleShowHideAll
 
 ABOUT                                           *numbertoggle-about*
 
