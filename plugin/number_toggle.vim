@@ -5,16 +5,19 @@ if exists('g:loaded_numbertoggle') || &cp || v:version < 703
     finish
 endif
 let g:loaded_numbertoggle = 1
-if !exists("g:numbertoggle_show_current_line_number_in_relativemode")
-    let g:numbertoggle_show_current_line_number_in_relativemode = 1
+if !exists("g:numbertoggle_show_current_line_number_in_relativenumber_mode")
+    let g:numbertoggle_show_current_line_number_in_relativenumber_mode = 1
 endif
-let s:insertmode = 0
+if !exists("g:numbertoggle_enable_relativenumber_in_insert_mode")
+    let g:numbertoggle_enable_relativenumber_in_insert_mode = 0
+endif
+let s:insert_mode = 0
 let s:focus = 1
-let s:relativemode = 1
+let s:relativenumber_mode = 1
 
 " Enables relative numbers.
 function! s:EnableRelativeNumbers()
-    if !g:numbertoggle_show_current_line_number_in_relativemode
+    if !g:numbertoggle_show_current_line_number_in_relativenumber_mode
         set nonumber
     else
         set number
@@ -32,10 +35,10 @@ endfunc
 function! s:NumberToggle()
     if &relativenumber == 1
         call s:DisableRelativeNumbers()
-        let s:relativemode = 0
+        let s:relativenumber_mode = 0
     else
         call s:EnableRelativeNumbers()
-        let s:relativemode = 1
+        let s:relativenumber_mode = 1
     endif
 endfunc
 
@@ -59,7 +62,9 @@ function! s:UpdateMode()
 
     if s:focus == 0
         call s:DisableRelativeNumbers()
-    elseif s:insertmode == 0 && s:relativemode == 1
+    elseif s:insert_mode == 0 && s:relativenumber_mode == 1
+        call s:EnableRelativeNumbers()
+    elseif s:insert_mode == 1  && g:numbertoggle_enable_relativenumber_in_insert_mode
         call s:EnableRelativeNumbers()
     else
         call s:DisableRelativeNumbers()
@@ -89,12 +94,12 @@ function! s:FocusLost()
 endfunc
 
 function! s:InsertLeave()
-    let s:insertmode = 0
+    let s:insert_mode = 0
     call s:UpdateMode()
 endfunc
 
 function! s:InsertEnter()
-    let s:insertmode = 1
+    let s:insert_mode = 1
     call s:UpdateMode()
 endfunc
 
