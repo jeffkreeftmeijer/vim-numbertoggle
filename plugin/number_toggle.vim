@@ -11,6 +11,9 @@ endif
 if !exists("g:numbertoggle_enable_relativenumber_in_insert_mode")
     let g:numbertoggle_enable_relativenumber_in_insert_mode = 0
 endif
+if !exists("g:numbertoggle_ignore_filetypes")
+    let g:numbertoggle_ignore_filetypes = ["filebeagle"]
+endif
 let s:insert_mode = 0
 let s:focus = 1
 let s:relativenumber_mode = 1
@@ -56,10 +59,12 @@ function! s:NumberToggleShowHideAll()
 endfunc
 
 function! s:UpdateMode()
+    if index(g:numbertoggle_ignore_filetypes, &ft) != -1
+        return
+    endif
     if &number == 0 && &relativenumber == 0
         return
     end
-
     if s:focus == 0
         call s:DisableRelativeNumbers()
     elseif s:insert_mode == 0 && s:relativenumber_mode == 1
