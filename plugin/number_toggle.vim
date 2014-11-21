@@ -1,3 +1,13 @@
+"
+" Set this to start closed 
+" let g:numberToggleInitialState = 0
+"
+"
+"
+"
+"
+"
+
 " Prevent multi loads and disable in compatible mode
 " check if vim version is at least 7.3
 " (relativenumber is not supported below)
@@ -80,10 +90,12 @@ function! InsertEnter()
 endfunc
 
 " Automatically set relative line numbers when opening a new document
-autocmd BufNewFile * :call UpdateMode()
-autocmd BufReadPost * :call UpdateMode()
-autocmd FilterReadPost * :call UpdateMode()
-autocmd FileReadPost * :call UpdateMode()
+if( !exists('g:numberToggleInitialState') || g:numberToggleInitialState != 0 )
+  autocmd BufNewFile * :call UpdateMode()
+  autocmd BufReadPost * :call UpdateMode()
+  autocmd FilterReadPost * :call UpdateMode()
+  autocmd FileReadPost * :call UpdateMode()
+endif
 
 " Automatically switch to absolute numbers when focus is lost and switch back
 " when the focus is regained.
