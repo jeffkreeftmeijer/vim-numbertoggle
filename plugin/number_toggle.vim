@@ -95,6 +95,8 @@ if( !exists('g:numberToggleInitialState') || g:numberToggleInitialState != 0 )
   autocmd BufReadPost * :call UpdateMode()
   autocmd FilterReadPost * :call UpdateMode()
   autocmd FileReadPost * :call UpdateMode()
+else
+  let g:relativemode = 0
 endif
 
 " Automatically switch to absolute numbers when focus is lost and switch back
