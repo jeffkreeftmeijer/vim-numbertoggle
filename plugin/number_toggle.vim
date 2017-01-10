@@ -89,8 +89,6 @@ autocmd FileReadPost * :call UpdateMode()
 " when the focus is regained.
 autocmd FocusLost * :call FocusLost()
 autocmd FocusGained * :call FocusGained()
-autocmd WinLeave * :call FocusLost()
-autocmd WinEnter * :call FocusGained()
 
 " Switch to absolute line numbers when the window loses focus and switch back
 " to relative line numbers when the focus is regained.
