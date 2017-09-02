@@ -79,11 +79,14 @@ function! InsertEnter()
   call UpdateMode()
 endfunc
 
-" Automatically set relative line numbers when opening a new document
-autocmd BufNewFile * :call UpdateMode()
-autocmd BufReadPost * :call UpdateMode()
-autocmd FilterReadPost * :call UpdateMode()
-autocmd FileReadPost * :call UpdateMode()
+" Set relative line numbers when opening a new document accorading to
+" configuration
+if ! exists ( 'g:AbsoluteNumberWhenOpening' ) || g:AbsoluteNumberWhenOpening == 0
+  autocmd BufNewFile * :call UpdateMode()
+  autocmd BufReadPost * :call UpdateMode()
+  autocmd FilterReadPost * :call UpdateMode()
+  autocmd FileReadPost * :call UpdateMode()
+endif
 
 " Automatically switch to absolute numbers when focus is lost and switch back
 " when the focus is regained.

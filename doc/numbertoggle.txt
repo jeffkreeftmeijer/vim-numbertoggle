@@ -8,6 +8,15 @@ numbertoggle cleverly toggles between relative/hybrid and absolute line number
 mode when switching between normal and insert mode and when focus is lost or 
 gained.
 
+DEFAULT BEHAVIOR                                *numbertoggle-default-behavior*
+
+If you want to open document with absolute line number, you can set 
+g:AbsoluteNumberWhenOpening to any value but zero, typically one:
+
+  let g:AbsoluteNumberWhenOpening = 1
+
+Otherwise, set g:AbsoluteNumberWhenOpening to 0 or leave it alone.
+
 TRIGGER                                         *numbertoggle-trigger*
 
 In case g:UseNumberToggleTrigger is unset or true, NumberToggle sets
