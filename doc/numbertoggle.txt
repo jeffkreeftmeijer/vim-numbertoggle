@@ -1,22 +1,31 @@
-*numbertoggle.txt*	(auto-)toggling for Vim line numbers
+*numbertoggle.txt* Automatic toggling between "hybrid" and absolute line numbers
 
-Author:  Jeff Kreeftmeijer <http://jeffkreeftmeijer.com>
+Author:  Jeff Kreeftmeijer <https://jeffkreeftmeijer.com>
+License: MIT
 
 INTRODUCTION                                    *numbertoggle*
 
-numbertoggle cleverly toggles between relative/hybrid and absolute line number 
-mode when switching between normal and insert mode and when focus is lost or 
-gained.
+Sets up "hybrid" line number mode (`:set number relativenumber`), and switches
+to absolute line numbers (`:set number norelativenumber`) automatically when
+relative numbers don't make sense.
 
-TRIGGER                                         *numbertoggle-trigger*
+Relative numbers are only used in a buffer that has focus, and is in normal
+mode, since that's where you move around. They're turned off when you switch
+out of Vim, switch to another split, or when you go into insert mode.
 
-In case g:UseNumberToggleTrigger is unset or true, NumberToggle sets
-up <C-n> to toggle from absolute to relative line numbers.
-You can set up another trigger if you prefer. If you want to
-toggle using <F2>, for example, put this into your ~/.vimrc file:
+LEGACY SUPPORT                                  *numbertoggle-legacy*
 
-  let g:NumberToggleTrigger="<F2>"
+Since version 2.0, numbertoggle dropped support for Vim < 7.3, and removed its
+configuration options in favor of a simple implementation with sensible
+defaults. If that doesn't work for you or your setup, you can switch to the
+legacy version by installing it from the legacy branch at
+<https://github.com/jeffkreeftmeijer/vim-numbertoggle/tree/legacy>.
 
+Also, numbertoggle doesn't set up a trigger to switch between line number
+modes anymore. To set one up yourself using <C-n>, use:
+>
+    :nnoremap <silent> <C-n> :set relativenumber!<cr>
+<
 ABOUT                                           *numbertoggle-about*
 
 Grab the latest version or report a bug on GitHub:
