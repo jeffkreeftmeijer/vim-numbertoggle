@@ -18,8 +18,8 @@ endfunc
 
 " Disables relative numbers.
 function! DisableRelativeNumbers()
-  set number
   set norelativenumber
+  set number
 endfunc
 
 " NumberToggle toggles between relative and absolute line numbers
