@@ -12,7 +12,7 @@ out of Vim, switch to another split, or when you go into insert mode.
 
 Using [vim-plug](https://github.com/junegunn/vim-plug)
 
-1. Add `Plug 'jeffkreeftmeijer/vim-numbertoggle` to `~/.vimrc` or 
+1. Add `Plug 'jeffkreeftmeijer/vim-numbertoggle'` to `~/.vimrc` or 
   `~/.config/nvim/init.vim`
 2. Run `:PlugInstall`
 
