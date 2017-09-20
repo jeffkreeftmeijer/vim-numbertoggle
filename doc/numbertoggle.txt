@@ -5,9 +5,9 @@ License: MIT
 
 INTRODUCTION                                    *numbertoggle*
 
-Sets up "hybrid" line number mode (`:set number relativenumber`), and switches
-to absolute line numbers (`:set number norelativenumber`) automatically when
-relative numbers don't make sense.
+In a buffer with "hybrid" line numbers (`:set number relativenumber`),
+numbertoggle switches to absolute line numbers (`:set number norelativenumber`)
+automatically when relative numbers don't make sense.
 
 Relative numbers are only used in a buffer that has focus, and is in normal
 mode, since that's where you move around. They're turned off when you switch
