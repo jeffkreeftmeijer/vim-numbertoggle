@@ -4,6 +4,18 @@
 
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * call numbertoggle#toggle#Set_rnu()
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave  * call numbertoggle#toggle#Set_nornu()
+
+
+  " CmdlineLeave and CmdlineEnter are new events. Older versions of 
+  " vim and nvim don't have them.
+  if exists('##CmdlineLeave')
+    autocmd CmdlineLeave * call numbertoggle#toggle#Set_rnu()
+  endif
+   
+  if exists('##CmdlineEnter')
+    autocmd CmdlineEnter * call numbertoggle#toggle#Set_nornu()
+  endif
 augroup END
+
