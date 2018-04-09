@@ -13,9 +13,7 @@ augroup numbertoggle
   endif
    
   if exists('##CmdlineEnter')
-    call inputsave()
     autocmd CmdlineEnter * call Set_nornu()
-    call inputrestore()
   endif
 
 augroup END
@@ -29,6 +27,6 @@ endfunction
 function! Set_nornu()
   if &nu
     set nornu
-    " redraw!
+    redraw
   endif
 endfunction
