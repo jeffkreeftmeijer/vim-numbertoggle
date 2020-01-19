@@ -22,4 +22,4 @@ Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 Once help tags are generated, you can view the manual with `:help numbertoggle`.
 
-If you use tmux, add `set-option -g focus-events on` to your tmux configs (`~/.tmux.conf`).
+If you use tmux, add `set-option -g focus-events on` to your tmux config (`~/.tmux.conf`).
