@@ -13,6 +13,11 @@ out of Vim, switch to another split, or when you go into insert mode.
 
 ## Installation
 
+Using Vim's package manager:
+
+1. `$ git clone git@github.com:jeffkreeftmeijer/vim-numbertoggle.git ~/.vim/pack/plugins/start/vim-numbertoggle`
+2. `:set number relativenumber`
+
 Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 1. Add `Plug 'jeffkreeftmeijer/vim-numbertoggle'` to `~/.vimrc` or 
