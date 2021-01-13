@@ -18,13 +18,6 @@ Using Vim's package manager:
 1. `$ git clone git@github.com:jeffkreeftmeijer/vim-numbertoggle.git ~/.vim/pack/plugins/start/vim-numbertoggle`
 2. `:set number relativenumber`
 
-Using [vim-plug](https://github.com/junegunn/vim-plug)
-
-1. Add `Plug 'jeffkreeftmeijer/vim-numbertoggle'` to `~/.vimrc` or 
-  `~/.config/nvim/init.vim`
-2. Run `:PlugInstall`
-3. `:set number relativenumber`
-
 Once help tags are generated, you can view the manual with `:help numbertoggle`.
 
 ## tmux
