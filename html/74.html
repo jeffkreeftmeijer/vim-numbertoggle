@@ -1,0 +1,39 @@
+<meta charset="utf-8" />
+                        <link rel="stylesheet" href="style.css"/>
+                        <pre><span class="fg-8">  5 </span><span class="fg-15">use</span> <span class="fg-15">std::str</span>;
+<span class="fg-8">  4 
+  3 </span><span class="fg-15">#[derive(Logos, Debug, PartialEq)]
+</span><span class="fg-8">  2 </span><span class="fg-15">enum</span> <span class="fg-15">Token</span> {
+<span class="fg-8">  1 </span>    <span class="fg-15">#[regex(</span><span class="fg-7">&quot;.&quot;</span><span class="fg-15">)]
+</span><span class="fg-7">9   </span>    Output,
+<span class="fg-8">  1 
+  2 </span>    <span class="fg-15">#[regex(</span><span class="fg-7">r&quot;\u001b\[\d*C&quot;</span><span class="fg-15">)]
+</span><span class="fg-8">  3 </span>    CursorForward,
+<span class="fg-8">  4 
+  5 </span>    <span class="fg-15">#[regex(</span><span class="fg-7">r&quot;\u001b\[\d+;\d+H&quot;</span><span class="fg-15">)]
+</span><span class="fg-8">  6 </span>    CursorPosition,
+<span class="fg-8">  7 
+  8 </span>    <span class="fg-15">#[regex(</span><span class="fg-7">r&quot;\u001b\[\d*[;\d+]*m&quot;</span><span class="fg-15">)]
+</span><span class="fg-8">  9 </span>    SelectGraphicRendition,
+<span class="fg-8"> 10 
+ 11 </span>    <span class="fg-15">#[token(</span><span class="fg-7">&quot;</span><span class="fg-15">\n</span><span class="fg-7">&quot;</span><span class="fg-15">)]</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <span class="fg-15"></span>                                                                                                                        
+<span class="bg-1 fg-15">Error detected while processing /Users/jeffkreeftmeijer/.config/nvim/init.vim:
+</span><span class="fg-11">line   13:
+</span>&quot;src/attributes.rs&quot; 166L, 3322C
+Press ENTER or type command to continue</pre>
